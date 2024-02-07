@@ -8,10 +8,10 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Linting
       - uses: actions/checkout@v4
+      
+      - name: Linting
       - run: echo "Linting..."
       
       - name: Testing
-      - uses: actions/checkout@v4
       - run: echo "Testing..."
