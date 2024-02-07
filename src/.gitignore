@@ -1,0 +1,11 @@
+**/.env
+**/.vs
+**/venv
+**/media
+**/env
+**/db.sqlite3
+*.tmp
+*.log
+publish/
+*.pyc
+__pycache__/
