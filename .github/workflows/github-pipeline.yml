@@ -57,7 +57,7 @@ jobs:
         run: docker build -t ${{ github.event.repository.name }} -f ./src/Dockerfile .
 
       - name: Tagging image
-        run: docker image tag tests ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
+        run: docker image tag ${{ github.event.repository.name }} ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
 
       - name: Pushing image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest
