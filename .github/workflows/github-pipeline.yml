@@ -23,6 +23,7 @@ jobs:
       - uses: my-org/test@v1
   
   test:
+    needs: preparations
     runs-on: ubuntu-latest
     steps:
       - uses: my-org/test@v1
