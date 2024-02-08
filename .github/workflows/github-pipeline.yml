@@ -31,7 +31,7 @@ jobs:
         run: echo ${{ secrets.HUB_USERNAME }}
 
       - name: Log in to Docker Hub
-        uses: docker/login-action@v4
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
           username: xoriax
           password: d0cHu8P4ss
