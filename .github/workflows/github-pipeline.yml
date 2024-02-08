@@ -20,13 +20,13 @@ jobs:
         working-directory: ./src
         run: pip install -r requirements.dev.txt
 
-      - uses: my-org/test@v1
+      - uses: src/test@v1
   
   test:
     needs: preparations
     runs-on: ubuntu-latest
     steps:
-      - uses: my-org/test@v1
+      - uses: src/test@v1
       - name: Testing
         working-directory: ./src
         run: python manage.py test
