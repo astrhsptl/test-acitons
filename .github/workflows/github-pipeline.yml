@@ -26,3 +26,18 @@ jobs:
       - name: Testing
         working-directory: ./src
         run: python manage.py test
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action
+        with:
+          username: xoriax
+          password: d0cHu8P4ss
+
+      - name: Preparing image
+        run: docker build -t tests -f ./src/Dockerfile .
+
+      - name: Tagging image
+        run: docker image tag tests xoriax/tests:latest
+
+      - name: Pushing image
+        run: docker push xoriax/tests:latest
