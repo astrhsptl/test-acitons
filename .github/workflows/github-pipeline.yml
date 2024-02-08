@@ -20,4 +20,12 @@ jobs:
         working-directory: ./src
         run: pip install -r requirements.dev.txt
 
-      - uses: ./tests
+      - uses: my-org/test@v1
+  
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: my-org/test@v1
+      - name: Testing
+        working-directory: ./src
+        run: python manage.py test

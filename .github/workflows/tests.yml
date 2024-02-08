@@ -1,6 +1,0 @@
-runs:
-  using: "composite"
-  steps:
-    - name: Testing
-      working-directory: ./src
-      run: python manage.py test
