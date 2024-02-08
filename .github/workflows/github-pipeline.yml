@@ -5,7 +5,7 @@ on:
     pull_request:
       branches: [ "main" ]
 jobs:
-  lint:
+  preparations:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,30 +19,44 @@ jobs:
         working-directory: ./src
         run: pip install -r requirements.dev.txt
 
+  lint:
+    needs: preparations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v2
+
       - name: Linting
         working-directory: ./src
         run: ruff check . --select F401 --select F403 --quiet
 
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v2
+      
       - name: Testing
         working-directory: ./src
         run: python manage.py test
 
-  deployment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # deployment:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: Log in to Docker Hub
+  #       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
     
-      - name: Preparing image
-        run: docker build -t tests -f ./src/Dockerfile .
+  #     - name: Preparing image
+  #       run: docker build -t tests -f ./src/Dockerfile .
 
-      - name: Tagging image
-        run: docker image tag tests xoriax/tests:latest
+  #     - name: Tagging image
+  #       run: docker image tag tests xoriax/tests:latest
 
-      - name: Pushing image
-        run: docker push xoriax/tests:latest
+  #     - name: Pushing image
+  #       run: docker push xoriax/tests:latest
