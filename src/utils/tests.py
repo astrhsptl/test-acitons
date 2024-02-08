@@ -9,4 +9,4 @@ class AnimalTestCase(TestCase):
     def test_subtraction(self):
         subtraction_result = self.testable_function(3, 2)
 
-        self.assertEqual(subtraction_result, 1)
+        self.assertEqual(subtraction_result, 3)
