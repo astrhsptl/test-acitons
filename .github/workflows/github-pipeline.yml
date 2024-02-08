@@ -27,12 +27,21 @@ jobs:
         working-directory: ./src
         run: python manage.py test
 
+      - name: Some
+        run: echo "$hub_user"
+        env:
+          hub_user: ${{ secrets.HUB_USERNAME }}
+          hub_pass: ${{ secrets.HUB_PASSWORD }}
+
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
-          username: ${{ actions.HUB_USERNAME }}
-          password: ${{ actions.HUB_PASSWORD }}
-
+          username: $hub_user
+          password: $hub_pass
+        env:
+          hub_user: ${{ secrets.HUB_USERNAME }}
+          hub_pass: ${{ secrets.HUB_PASSWORD }}
+    
       - name: Preparing image
         run: docker build -t tests -f ./src/Dockerfile .
 
