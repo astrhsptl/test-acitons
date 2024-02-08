@@ -10,8 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v2
-      - run: cd ./src
-      - run: ls 
+      - working-directory: ./src
       - run: pip install -r requirements.dev.txt
       - run: python manage.py test
 
