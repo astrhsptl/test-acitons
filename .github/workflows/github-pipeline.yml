@@ -30,8 +30,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
-          username: ${{ secrets.HUB_USERNAME }}
-          password: ${{ secrets.HUB_PASSWORD }}
+          username: ${{ actions.HUB_USERNAME }}
+          password: ${{ actions.HUB_PASSWORD }}
 
       - name: Preparing image
         run: docker build -t tests -f ./src/Dockerfile .
