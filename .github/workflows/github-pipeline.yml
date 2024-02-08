@@ -11,7 +11,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v2
       
-      - name: Installing libraries
+      - name: Setup env
+        working-directory: ./src
+        run: mv example.env .env
+
+      - name: Installing libs
         working-directory: ./src
         run: pip install -r requirements.dev.txt
       
