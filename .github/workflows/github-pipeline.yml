@@ -27,8 +27,11 @@ jobs:
         working-directory: ./src
         run: python manage.py test
 
+      - name: Some
+        run: echo ${{ secrets.HUB_USERNAME }}
+
       - name: Log in to Docker Hub
-        uses: docker/login-action
+        uses: docker/login-action@v4
         with:
           username: xoriax
           password: d0cHu8P4ss
