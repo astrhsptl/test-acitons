@@ -10,10 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v2
-      - name: Chabge directory
-        working-directory: ./src
       
       - name: Installing libraries
+        working-directory: ./src
         run: pip install -r requirements.dev.txt
-      - run: python manage.py test
+      
+      - name: Testing
+        working-directory: ./src
+        run: python manage.py test
 
