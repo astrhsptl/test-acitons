@@ -18,8 +18,11 @@ jobs:
       - name: Installing libs
         working-directory: ./src
         run: pip install -r requirements.dev.txt
-      
+
+      - name: Linting
+        working-directory: ./src
+        run: ruff check . --select F401 --select F403 --quiet
+
       - name: Testing
         working-directory: ./src
         run: python manage.py test
-
